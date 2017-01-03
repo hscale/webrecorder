@@ -153,6 +153,9 @@ class AppController(BaseController):
         def can_tag():
             return self.manager.can_tag()
 
+        def is_public(user, coll):
+            return self.manager.is_public(user, coll)
+
         @contextfunction
         def can_admin(context):
             return self.manager.can_admin_coll(get_user(context), get_coll(context))
@@ -213,6 +216,7 @@ class AppController(BaseController):
         jinja_env.globals['is_owner'] = is_owner
         jinja_env.globals['is_anon'] = is_anon
         jinja_env.globals['is_beta'] = is_beta
+        jinja_env.globals['is_public'] = is_public
         jinja_env.globals['get_path'] = get_path
         jinja_env.globals['get_body_class'] = get_body_class
         jinja_env.globals['is_out_of_space'] = is_out_of_space

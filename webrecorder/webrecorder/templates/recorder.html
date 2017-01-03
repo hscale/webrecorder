@@ -1,3 +1,5 @@
+{% from '/utils.html' import sharing_widget %}
+
 {% if curr_mode and curr_mode != 'live' %}
 <div class="col-md-11">
     <form class="{{ 'content-form' if curr_mode != 'new' else 'start-recording' }} form-group-recorder-url">
@@ -77,8 +79,9 @@
 
 </div>
 
-<div class="recording-actions text-center col-md-1">
-    <form class="{{ 'content-action' if curr_mode != 'new' else 'start-recording' }} top-buffer">
+<div class="recording-actions text-center col-md-1 top-buffer">
+    {{ sharing_widget('http://test.com', user, coll, can_admin(), is_public(user, coll)) }}
+    <form class="{{ 'content-action' if curr_mode != 'new' else 'start-recording' }}">
         <button type="submit" class="btn btn-default">
             {{ 'Finish' if curr_mode != 'new' else 'Start' }}
         </button>
